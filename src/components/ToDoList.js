@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import ToDoItem from "./ToDoItem";
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
+
+import ToDoItem from "./ToDoItem";
 
 const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -14,8 +15,8 @@ export default function ToDoList() {
   return (
     <Demo>
         <List>
-        {list.map((x) => (
-            <ToDoItem title={x}></ToDoItem>
+        {list.map((x, index) => (
+            <ToDoItem key={index} value={x} i={index}></ToDoItem>
         ))}
         </List>
     </Demo>

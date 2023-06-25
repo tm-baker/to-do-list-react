@@ -51,10 +51,7 @@ const addItem = (value) => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <SimpleDialog
-      open={open}
-      onClose={handleClose}
-      />
+      <SimpleDialog open={open} onClose={handleClose} value=""/>
     </Box>
   );
 }

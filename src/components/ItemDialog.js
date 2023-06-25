@@ -7,13 +7,16 @@ import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
-//to do: modify to handle edit functionality
 export function SimpleDialog(props) {
-  const { onClose, open } = props;
-  const [itemValue, setItemValue] = useState("");
+  const { onClose, open, value } = props;
+  const [itemValue, setItemValue] = useState(value);
 
   const handleClose = () => {
     onClose(itemValue);
+  };
+
+  const handleCancel = () => {
+    onClose();
   };
 
   const handleChange = (event) => {
@@ -22,7 +25,7 @@ export function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Add List Item</DialogTitle>
+      <DialogTitle>{props.value ? "Edit List Item" : "Add List Item"}</DialogTitle>
       <DialogContent>
           <TextField
             autoFocus
@@ -32,12 +35,13 @@ export function SimpleDialog(props) {
             type="text"
             fullWidth
             variant="standard"
+            value={itemValue}
             onChange={handleChange}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button onClick={handleClose}>Save</Button>
         </DialogActions>
     </Dialog>
   );
