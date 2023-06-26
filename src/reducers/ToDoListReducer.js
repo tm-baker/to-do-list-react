@@ -1,7 +1,12 @@
-import { ADD_ITEM, DELETE_ITEM, EDIT_ITEM } from "../actions/actions";
+import { ADD_ITEM, DELETE_ITEM, EDIT_ITEM, TOGGLE_COMPLETE } from "../actions/actions";
 
 const initialState = {
-    list: ["Item 1", "Item 2", "Item 3"]
+    list: [{value: "Item 1",
+            is_complete: false},
+            {value: "Item 2",
+            is_complete: false},
+            {value: "Item 3",
+            is_complete: false}]
 };
 
 export function ToDoListReducer(state = initialState, action){
@@ -14,7 +19,17 @@ export function ToDoListReducer(state = initialState, action){
             return {...state,
                     list: state.list.map((x, i) => {
                         if (action.payload.index === i){
-                            x = action.payload.value;
+                            x = {value: action.payload.value,
+                                is_complete: x.is_complete};
+                        }
+                        return x;
+                    })};
+        case TOGGLE_COMPLETE:
+            return {...state,
+                    list: state.list.map((x, i) => {
+                        if (action.payload.index === i){
+                            x = {value: x.value,
+                                is_complete: !x.is_complete};
                         }
                         return x;
                     })};

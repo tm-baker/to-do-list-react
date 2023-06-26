@@ -16,7 +16,7 @@ export default function ToDoList() {
     <Demo>
         <List>
         {list.map((x, index) => (
-            <ToDoItem key={index} value={x} i={index}></ToDoItem>
+            <ToDoItem key={index} {...x} i={index}></ToDoItem>
         ))}
         </List>
     </Demo>

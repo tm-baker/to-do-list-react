@@ -27,7 +27,8 @@ const addItem = (value) => {
   if (!!value){
     dispatch({
       type: ADD_ITEM,
-      payload: value
+      payload: {value: value,
+        is_complete: false}
     });
   }
 }
